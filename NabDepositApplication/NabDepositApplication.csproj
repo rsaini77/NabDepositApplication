@@ -190,10 +190,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Data\DepositRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ConfigurationManagerHelper.cs" />
+    <Compile Include="Interfaces\IDepositRepository.cs" />
+    <Compile Include="Models\Deposit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -237,9 +240,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Models\" />
     <Folder Include="Scripts\app\" />
     <Folder Include="Services\" />
     <Folder Include="Views\Deposits\" />
