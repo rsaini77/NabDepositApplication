@@ -18,24 +18,52 @@ namespace NabDepositApplication.Services
 			_itemRepository = itemRepository ?? throw new ArgumentNullException(nameof(itemRepository));
 		}
 
-		void IDepositService.AddDeposits()
+		public List<Deposit> GetAllDeposits()
 		{
-			throw new NotImplementedException();
+			return _itemRepository.GetAllDeposits();
+
 		}
 
-		void IDepositService.DeleteDeposits()
+		public void AddDeposits()
 		{
-			throw new NotImplementedException();
+			while (true)
+			{
+				
+				if (_itemRepository.GetTotalMaturityValue() >= 120000000)
+				{
+					break;
+				}
+				var generateNewDeposit = _itemRepository.GenerateSingleDeposit();
+				_itemRepository.AddSingleDeposit(generateNewDeposit);
+
+				/*Commenting the sleep so that it can be run quickly*/
+				//Thread.Sleep(5000);
+
+			}
+
 		}
 
-		List<Deposit> IDepositService.GetAllDeposits()
+		public void DeleteDeposits()
 		{
-			throw new NotImplementedException();
+			while (true)
+			{
+				if (_itemRepository.GetTotalMaturityValue() <= 50000000)
+				{
+					break;
+				}
+				_itemRepository.DeleteSingleDeposit();
+
+				/*Commenting the sleep so that it can be run quickly*/
+				//Thread.Sleep(5000);
+
+			}
+			
 		}
 
-		double IDepositService.GetTotalMaturityValue()
+		public double GetTotalMaturityValue()
 		{
-			throw new NotImplementedException();
+			return _itemRepository.GetTotalMaturityValue();
 		}
+
 	}
 }
