@@ -7,7 +7,9 @@ namespace NabDepositApplication.App_Start
     using System.Web;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
+    using NabDepositApplication.Data;
+    using NabDepositApplication.Interfaces;
+    using NabDepositApplication.Services;
     using Ninject;
     using Ninject.Web.Common;
     using Ninject.Web.Common.WebHost;
@@ -45,6 +47,8 @@ namespace NabDepositApplication.App_Start
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+                kernel.Bind<IDepositRepository>().To<DepositRepository>();
+                kernel.Bind<IDepositService>().To<DepositService>();
                 
                 RegisterServices(kernel);
                 return kernel;
