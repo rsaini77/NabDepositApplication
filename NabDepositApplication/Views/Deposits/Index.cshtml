@@ -1,0 +1,13 @@
+﻿@{
+	ViewBag.Title = "Current deposit levels";
+}
+
+<h2>Current deposits</h2>
+<div id="deposits"></div>
+
+@section Scripts
+{
+	<script>
+        depositsModule.init($("#deposits"));
+	</script>
+}
